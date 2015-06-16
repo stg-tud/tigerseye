@@ -1,1 +1,19 @@
+# Binary files
 *.class
+
+# Build directories
+analysis/build/
+analysis/bin/
+core/build/
+core/bin/
+languages/build/
+languages/bin/
+        
+# Development environment
+.gradle/
+.classpath
+.project
+.settings
+
+# 3rd party components 
+lib/

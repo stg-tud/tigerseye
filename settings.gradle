@@ -1,0 +1,12 @@
+def projectsToBuild = [
+analysis:'tigerseye-analysis',
+core:'tigerseye-core',
+languages:'tigerseye-languages'
+]
+
+// use this line to import all projects
+def eclipseProjects = projectsToBuild
+
+projectsToBuild.each{ projectName, projectDir ->
+    include projectName
+}

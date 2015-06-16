@@ -1,0 +1,62 @@
+
+group="de.tud.stg.tigerseye"
+version="1.0"
+
+dependencies {
+	/*
+		println "importing dependencies from $sp ${sp.class}"
+		subproject sp
+	}
+	*/
+}
+
+subprojects {
+	version=rootProject.version
+	group=rootProject.group
+
+	apply plugin: 'maven'
+	apply plugin: 'java'
+	apply plugin: 'groovy'
+	apply plugin: 'eclipse'
+	apply from: "${rootDir}/gradle/dependencies.gradle"
+	
+	project.repositories {
+		maven {
+			url 'http://myhost.com:8081/artifactory/public/'
+		}
+	}
+	
+	uploadArchives {
+		repositories {
+			mavenDeployer {
+				snapshotRepository(url: "http://myhost.com:8081/artifactory/simple/libs-snapshot-local/"){}
+				repository(url: "http://myhost.com:8081/artifactory/simple/libs-release/"){}
+			}
+		}
+	}
+	
+	jar {
+		// configuration of MANIFEST.MF content
+		manifest {
+			attributes 'Implementation-Title': project.name, 'Implementation-Version': version, 'Build-Tool': 'Gradle-'+rootProject.tasks.wrapper.gradleVersion
+		}
+	}
+	
+	tasks.withType(Test) {
+		afterTest { desc, result ->
+			println "Executing test ${desc.name} [${desc.className}] with result: ${result.resultType}"
+		}
+	}
+	
+	task sourceJar(type: Jar) {
+		from sourceSets.main.java
+		classifier = "source"
+	}
+}
+
+allprojects {
+	repositories {
+		mavenCentral()
+	}
+}
+

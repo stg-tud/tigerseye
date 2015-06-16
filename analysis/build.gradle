@@ -1,0 +1,7 @@
+
+dependencies {  
+	compile project(':languages')
+	
+	compile libraries.groovy
+	testCompile libraries.junit
+}

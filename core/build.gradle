@@ -1,0 +1,5 @@
+
+dependencies {  
+	compile libraries.groovy
+	testCompile libraries.junit
+}

@@ -1,0 +1,21 @@
+sourceSets {
+	main {
+	  groovy {
+		//exclude 'de/tud/stg/tigerseye/lang/logo/**' //TODO: include again after refactoring POPART project
+	  }
+	}
+	test {
+	  groovy {
+		//exclude 'de/tud/stg/tigerseye/tests/logo/**' //TODO: include again after refactoring POPART project
+	  }
+	}
+  }
+  
+dependencies {  
+	compile project(':core')
+	compile files("${rootDir}/lib/javalogo.jar") //Unfortunately, Java Logo is not available as an artifact
+	compile files("${rootDir}/lib/popart.jar") //TODO: include again after refactoring POPART project
+		
+	compile libraries.groovy
+	testCompile libraries.junit
+}

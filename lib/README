@@ -1,0 +1,7 @@
+You need the following JAR files:
+
+* popart.jar
+  From: https://github.com/stg-tud/popart
+
+* javalogo.jar
+  From: http://sourceforge.net/projects/javalogo/
